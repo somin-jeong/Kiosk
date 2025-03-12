@@ -4,7 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ExceptionHandler {
-    public static int handleInputMismatch(Scanner sc) {
+    // Scanner 선언
+    private static final Scanner sc = new Scanner(System.in);
+
+    public static int handleInputMismatch() {
         while (true) {
             try {
                 return sc.nextInt();

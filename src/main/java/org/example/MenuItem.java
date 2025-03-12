@@ -17,6 +17,10 @@ public class MenuItem {
     }
 
     public void printSelectedMenu() {
-        System.out.println("선택한 메뉴 : " + menuName + ", " + price + ", " + description);
+        System.out.println("선택한 메뉴 : " + this);
+    }
+
+    public void printOrderSuccess() {
+        System.out.println(menuName + " 이 장바구니에 추가되었습니다.");
     }
 }

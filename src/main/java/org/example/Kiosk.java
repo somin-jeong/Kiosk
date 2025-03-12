@@ -3,14 +3,13 @@ package org.example;
 import java.util.*;
 
 public class Kiosk {
-    // Scanner 선언
-    private static final Scanner sc = new Scanner(System.in);
-
     // List 선언 및 초기화
     private final List<Menu> menus;
+    private final Orders orders;
 
-    public Kiosk(List<Menu> menus) {
+    public Kiosk(List<Menu> menus, Orders orders) {
         this.menus = menus;
+        this.orders = orders;
     }
 
     public void start() {
@@ -20,22 +19,23 @@ public class Kiosk {
             printCategoryMenus();
 
             // 카테고리 메뉴 숫자 입력 받기
-            categoryNum = ExceptionHandler.handleInputMismatch(sc);
+            categoryNum = ExceptionHandler.handleInputMismatch();
 
             if (categoryNum > 0 && categoryNum <= menus.size()) {
                 // 입력 받은 숫자가 올바르다면 인덱스를 활용하여 Menu에 접근하기
                 Menu menu = menus.get(categoryNum - 1);
+
                 int menuNum = -1;
                 while (menuNum != 0) {
                     // Menu가 가진 List<MenuItem>을 반복문을 활용하여 햄버거 메뉴 출력
                     menu.printMenuItems();
 
                     // 메뉴 숫자 입력 받기
-                    menuNum = ExceptionHandler.handleInputMismatch(sc);
+                    menuNum = ExceptionHandler.handleInputMismatch();
 
                     if (menuNum > 0 && menuNum <= menu.getMenuItemSize()) {
                         menu.printSelectedMenu(menuNum);
-                        break;
+                        menu.addOrder(menuNum, orders);
                     } else if (menuNum != 0) {
                         System.out.println("올바르지 않은 번호입니다.");
                     }

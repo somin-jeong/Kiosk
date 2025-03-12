@@ -27,7 +27,7 @@ public class Main {
         Menu desserts = new Menu("Desserts", dessertItems);
 
         List<Menu> menus = List.of(burgers, drinks, desserts);
-        Kiosk kiosk = new Kiosk(menus);
+        Kiosk kiosk = new Kiosk(menus, new Orders());
         kiosk.start();
     }
 }

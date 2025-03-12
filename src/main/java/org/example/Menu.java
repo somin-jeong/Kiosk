@@ -33,4 +33,26 @@ public class Menu {
     public String getCategory() {
         return category;
     }
+
+    public void addOrder(int selectedNum, Orders orders) {
+        int num = -1;
+        while (num != 2) {
+            System.out.println();
+            MenuItem menuItem = menuItems.get(selectedNum-1);
+            System.out.println("\"" + menuItem.toString() + "\"");
+
+            System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
+            System.out.println("1. 확인        2. 취소");
+
+            num = ExceptionHandler.handleInputMismatch();
+
+            if (num == 1){
+                menuItem.printOrderSuccess();
+                orders.addItem(menuItem);
+                break;
+            } else if (num != 2) {
+                System.out.println("올바르지 않은 번호입니다.");
+            }
+        }
+    }
 }
