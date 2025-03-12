@@ -26,6 +26,10 @@ public class Menu {
         menuItem.printSelectedMenu();
     }
 
+    public int getMenuItemSize() {
+        return menuItems.size();
+    }
+
     public String getCategory() {
         return category;
     }
