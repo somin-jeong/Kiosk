@@ -34,7 +34,8 @@ public class Menu {
         return category;
     }
 
-    public void addOrder(int selectedNum, Orders orders) {
+    // 장바구니에 추가 완료했으면 true, 취소하면 false 반환
+    public boolean addOrder(int selectedNum, Orders orders) {
         int num = -1;
         while (num != 2) {
             System.out.println();
@@ -49,10 +50,11 @@ public class Menu {
             if (num == 1){
                 menuItem.printOrderSuccess();
                 orders.addItem(menuItem);
-                break;
+                return true;
             } else if (num != 2) {
                 System.out.println("올바르지 않은 번호입니다.");
             }
         }
+        return false;
     }
 }

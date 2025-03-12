@@ -23,4 +23,8 @@ public class MenuItem {
     public void printOrderSuccess() {
         System.out.println(menuName + " 이 장바구니에 추가되었습니다.");
     }
+
+    public double getPrice() {
+        return price;
+    }
 }

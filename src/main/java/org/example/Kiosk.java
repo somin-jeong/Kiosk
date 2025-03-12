@@ -18,6 +18,10 @@ public class Kiosk {
             // List와 Menu 클래스 활용하여 상위 카테고리 메뉴 출력
             printCategoryMenus();
 
+            if (!orders.isEmpty()) {
+                printOrderMenu();
+            }
+
             // 카테고리 메뉴 숫자 입력 받기
             categoryNum = ExceptionHandler.handleInputMismatch();
 
@@ -35,11 +39,17 @@ public class Kiosk {
 
                     if (menuNum > 0 && menuNum <= menu.getMenuItemSize()) {
                         menu.printSelectedMenu(menuNum);
-                        menu.addOrder(menuNum, orders);
+                        if (menu.addOrder(menuNum, orders)) {
+                            break;
+                        }
                     } else if (menuNum != 0) {
                         System.out.println("올바르지 않은 번호입니다.");
                     }
                 }
+            } else if (!orders.isEmpty() && categoryNum == menus.size() + 1) {
+                orders.order();
+            } else if (!orders.isEmpty() && categoryNum == menus.size() + 2) {
+                orders.clearOrders();
             } else if (categoryNum != 0) {
                 System.out.println("올바르지 않은 번호입니다.");
             }
@@ -56,5 +66,12 @@ public class Kiosk {
             System.out.println((i+1) + ". " + menus.get(i).getCategory());
         }
         System.out.println("0. 종료      | 종료");
+    }
+
+    private void printOrderMenu() {
+        System.out.println();
+        System.out.println("[ ORDER MENU ]");
+        System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
+        System.out.println("5. Cancel       | 진행중인 주문을 취소합니다.");
     }
 }
