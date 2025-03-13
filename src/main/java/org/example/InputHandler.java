@@ -3,11 +3,11 @@ package org.example;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ExceptionHandler {
+public class InputHandler {
     // Scanner 선언
     private static final Scanner sc = new Scanner(System.in);
 
-    public static int handleInputMismatch() {
+    public static int getIntInput() {
         while (true) {
             try {
                 return sc.nextInt();

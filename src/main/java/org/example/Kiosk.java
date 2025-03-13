@@ -23,7 +23,7 @@ public class Kiosk {
             }
 
             // 카테고리 메뉴 숫자 입력 받기
-            categoryNum = ExceptionHandler.handleInputMismatch();
+            categoryNum = InputHandler.getIntInput();
 
             if (categoryNum > 0 && categoryNum <= menus.size()) {
                 // 입력 받은 숫자가 올바르다면 인덱스를 활용하여 Menu에 접근하기
@@ -35,7 +35,7 @@ public class Kiosk {
                     menu.printMenuItems();
 
                     // 메뉴 숫자 입력 받기
-                    menuNum = ExceptionHandler.handleInputMismatch();
+                    menuNum = InputHandler.getIntInput();
 
                     if (menuNum > 0 && menuNum <= menu.getMenuItemSize()) {
                         menu.printSelectedMenu(menuNum);

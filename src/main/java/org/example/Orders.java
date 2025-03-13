@@ -22,7 +22,7 @@ public class Orders {
             System.out.println();
             System.out.println("1. 주문      2. 메뉴판");
 
-            num = ExceptionHandler.handleInputMismatch();
+            num = InputHandler.getIntInput();
 
             if (num == 1) {
                 System.out.printf("주문이 완료되었습니다. 금액은 W %.1f 입니다.", getTotalPrice());
