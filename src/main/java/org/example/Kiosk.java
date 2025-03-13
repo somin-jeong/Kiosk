@@ -1,5 +1,10 @@
 package org.example;
 
+import org.example.domain.Menu;
+import org.example.domain.Order;
+import org.example.io.InputHandler;
+import org.example.io.OutputHandler;
+
 import java.util.*;
 
 public class Kiosk {

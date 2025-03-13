@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.domain.Menu;
+import org.example.domain.MenuItem;
+import org.example.domain.Order;
+
 import java.util.ArrayList;
 import java.util.List;
 

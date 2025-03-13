@@ -1,4 +1,6 @@
-package org.example;
+package org.example.io;
+
+import org.example.domain.Menu;
 
 import java.util.List;
 
