@@ -5,11 +5,11 @@ import java.util.*;
 public class Kiosk {
     // List 선언 및 초기화
     private final List<Menu> menus;
-    private final Orders orders;
+    private final Order order;
 
-    public Kiosk(List<Menu> menus, Orders orders) {
+    public Kiosk(List<Menu> menus, Order order) {
         this.menus = menus;
-        this.orders = orders;
+        this.order = order;
     }
 
     public void start() {
@@ -25,7 +25,7 @@ public class Kiosk {
             // List와 Menu 클래스 활용하여 상위 카테고리 메뉴 출력
             OutputHandler.printCategoryMenus(menus);
 
-            if (!orders.isEmpty()) {
+            if (!order.isEmpty()) {
                 OutputHandler.printOrderMenu();
             }
 
@@ -40,10 +40,10 @@ public class Kiosk {
             // 입력 받은 숫자가 올바르다면 인덱스를 활용하여 Menu에 접근하기
             Menu menu = menus.get(categoryNum - 1);
             selectMenuItem(menu);
-        } else if (!orders.isEmpty() && categoryNum == menus.size() + 1) {
-            orders.order();
-        } else if (!orders.isEmpty() && categoryNum == menus.size() + 2) {
-            orders.clearOrders();
+        } else if (!order.isEmpty() && categoryNum == menus.size() + 1) {
+            order.order();
+        } else if (!order.isEmpty() && categoryNum == menus.size() + 2) {
+            order.clearOrders();
         } else if (categoryNum != 0) {
             System.out.println("올바르지 않은 번호입니다.");
         }
@@ -66,7 +66,7 @@ public class Kiosk {
     private boolean navigateMenuItem(Menu menu, int menuNum) {
         if (menuNum > 0 && menuNum <= menu.getMenuItemSize()) {
             menu.printSelectedMenu(menuNum);
-            return menu.addOrder(menuNum, orders);
+            return menu.addOrder(menuNum, order);
         } else if (menuNum != 0) {
             System.out.println("올바르지 않은 번호입니다.");
         }

@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         // add 함수를 통해 new MenuItem(이름, 가격, 설명) List에 삽입
         List<Menu> menus = initMenus();
-        Kiosk kiosk = new Kiosk(menus, new Orders());
+        Kiosk kiosk = new Kiosk(menus, new Order());
         kiosk.start();
     }
 

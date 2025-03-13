@@ -3,11 +3,11 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Orders {
-    List<MenuItem> orders = new ArrayList<>();
+public class Order {
+    List<MenuItem> cartItems = new ArrayList<>();
 
     public void addItem(MenuItem menuItem) {
-        orders.add(menuItem);
+        cartItems.add(menuItem);
     }
 
     // 주문 완료했으면 true, 취소했으면 false
@@ -39,17 +39,17 @@ public class Orders {
     }
 
     public void clearOrders() {
-        orders.clear();
+        cartItems.clear();
     }
 
     public boolean isEmpty() {
-        return orders.isEmpty();
+        return cartItems.isEmpty();
     }
 
     public void printOrders() {
         System.out.println("[ Orders ]");
-        for (MenuItem order : orders) {
-            System.out.println(order.toString());
+        for (MenuItem menuItem : cartItems) {
+            System.out.println(menuItem.toString());
         }
     }
 
@@ -60,8 +60,8 @@ public class Orders {
 
     private double getTotalPrice() {
         double totalPrice = 0;
-        for (MenuItem order : orders) {
-            totalPrice += order.getPrice();
+        for (MenuItem menuItem : cartItems) {
+            totalPrice += menuItem.getPrice();
         }
         return totalPrice;
     }
