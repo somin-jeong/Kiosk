@@ -2,6 +2,7 @@ package org.example.io;
 
 import org.example.domain.Menu;
 import org.example.domain.MenuItem;
+import org.example.domain.UserType;
 
 import java.util.List;
 
@@ -32,5 +33,17 @@ public class OutputHandler {
 
     public static void printStartOrder() {
         System.out.println("1. 주문      2. 메뉴판");
+    }
+
+    public static void printDiscountInfo() {
+        System.out.println("할인 정보를 입력해주세요.");
+        for (UserType userType : UserType.values()) {
+            System.out.printf("%d. %-10s : %2.0f%%\n",
+                    userType.ordinal() + 1,
+                    userType.getUserType(),
+                    userType.getDiscountRate() * 100
+            );
+        }
+        System.out.println("0. 뒤로가기");
     }
 }

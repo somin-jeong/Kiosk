@@ -3,6 +3,7 @@ package org.example;
 import org.example.domain.Menu;
 import org.example.domain.MenuItem;
 import org.example.domain.Order;
+import org.example.domain.UserType;
 import org.example.io.InputHandler;
 import org.example.io.OutputHandler;
 
@@ -91,7 +92,8 @@ public class Kiosk {
 
     private boolean navigateOrder(int num) {
         if (num == 1) {
-            order.orderSuccess();
+            double discountRate = getDiscountRate();
+            order.orderSuccess(discountRate);
             return true;
         } else if (num != 2) {
             System.out.println("올바르지 않은 번호입니다.");
@@ -120,5 +122,22 @@ public class Kiosk {
             System.out.println("올바르지 않은 번호입니다.");
         }
         return false;
+    }
+
+    private double getDiscountRate() {
+        int num;
+        do {
+            OutputHandler.printDiscountInfo();
+            num = InputHandler.getIntInput();
+            for (UserType userType : UserType.values()) {
+                if (userType.ordinal()+1 == num) {
+                    return userType.getDiscountRate();
+                }
+            }
+            if (num > UserType.values().length || num <= 0) {
+                System.out.println("올바르지 않은 번호입니다.");
+            }
+        } while (num != 0);
+        return 0;
     }
 }

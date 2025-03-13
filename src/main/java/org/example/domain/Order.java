@@ -18,8 +18,8 @@ public class Order {
         return cartItems.isEmpty();
     }
 
-    public void orderSuccess() {
-        System.out.printf("주문이 완료되었습니다. 금액은 W %.1f 입니다.\n", getTotalPrice());
+    public void orderSuccess(double discount) {
+        System.out.printf("주문이 완료되었습니다. 금액은 W %.1f 입니다.\n", getTotalPrice()-(getTotalPrice()*discount));
         clearOrders();  // 장바구니 초기화
     }
 
