@@ -1,6 +1,7 @@
 package org.example.io;
 
 import org.example.domain.Menu;
+import org.example.domain.MenuItem;
 
 import java.util.List;
 
@@ -19,5 +20,17 @@ public class OutputHandler {
         System.out.println("[ ORDER MENU ]");
         System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
         System.out.println("5. Cancel       | 진행중인 주문을 취소합니다.");
+    }
+
+    public static void printAddCart(MenuItem menuItem) {
+        menuItem.printSelectedMenu();
+        System.out.println();
+        System.out.println("\"" + menuItem + "\"");
+        System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
+        System.out.println("1. 확인        2. 취소");
+    }
+
+    public static void printStartOrder() {
+        System.out.println("1. 주문      2. 메뉴판");
     }
 }
