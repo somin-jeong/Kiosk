@@ -23,32 +23,16 @@ public class Kiosk {
         int categoryNum = -1;
         while (categoryNum != 0) {
             // List와 Menu 클래스 활용하여 상위 카테고리 메뉴 출력
-            printCategoryMenus();
+            OutputHandler.printCategoryMenus(menus);
 
             if (!orders.isEmpty()) {
-                printOrderMenu();
+                OutputHandler.printOrderMenu();
             }
 
             // 카테고리 메뉴 숫자 입력 받기
             categoryNum = InputHandler.getIntInput();
             navigateCategory(categoryNum);
         }
-    }
-
-    private void printCategoryMenus() {
-        System.out.println();
-        System.out.println("[ MAIN MENU ]");
-        for (int i=0; i<menus.size(); i++) {
-            System.out.println((i+1) + ". " + menus.get(i).getCategory());
-        }
-        System.out.println("0. 종료      | 종료");
-    }
-
-    private void printOrderMenu() {
-        System.out.println();
-        System.out.println("[ ORDER MENU ]");
-        System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
-        System.out.println("5. Cancel       | 진행중인 주문을 취소합니다.");
     }
 
     private void navigateCategory(int categoryNum) {
