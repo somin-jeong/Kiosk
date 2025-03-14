@@ -19,9 +19,9 @@ public class Menu {
     public void printMenuItems() {
         System.out.println();
         System.out.println("[ " + category + " MENU ]");
-        for (int i = 0; i < menuItems.size(); i++) {
-            System.out.println((i+1) + ". " + menuItems.get(i).toString());
-        }
+        menuItems.stream()
+                .map(item -> (menuItems.indexOf(item) + 1) + ". " + item.toString())
+                .forEach(System.out::println);
         System.out.println("0. 뒤로가기");
     }
 

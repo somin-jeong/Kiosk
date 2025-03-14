@@ -4,15 +4,16 @@ import org.example.domain.Menu;
 import org.example.domain.MenuItem;
 import org.example.domain.UserType;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class OutputHandler {
     public static void printCategoryMenus(List<Menu> menus) {
         System.out.println();
         System.out.println("[ MAIN MENU ]");
-        for (int i=0; i<menus.size(); i++) {
-            System.out.println((i+1) + ". " + menus.get(i).getCategory());
-        }
+        menus.stream()
+                .map(menu -> (menus.indexOf(menu) + 1) + ". " + menu.getCategory())
+                .forEach(System.out::println);
         System.out.println("0. 종료      | 종료");
     }
 
@@ -32,18 +33,19 @@ public class OutputHandler {
     }
 
     public static void printStartOrder() {
-        System.out.println("1. 주문      2. 메뉴판");
+        System.out.println("1. 주문      2. 메뉴 빼기      3. 메뉴판");
     }
 
     public static void printDiscountInfo() {
         System.out.println("할인 정보를 입력해주세요.");
-        for (UserType userType : UserType.values()) {
-            System.out.printf("%d. %-10s : %2.0f%%\n",
-                    userType.ordinal() + 1,
-                    userType.getUserType(),
-                    userType.getDiscountRate() * 100
-            );
-        }
+        Arrays.stream(UserType.values())
+                .map(userType -> String.format("%d. %-10s : %2.0f%%",
+                        userType.ordinal() + 1, userType.getUserType(), userType.getDiscountRate() * 100))
+                .forEach(System.out::println);
         System.out.println("0. 뒤로가기");
+    }
+
+    public static void printRemoveMenuName() {
+        System.out.println("장바구니에서 제외할 메뉴 이름을 입력해주세요.");
     }
 }

@@ -13,6 +13,8 @@ public class Kiosk {
     // List 선언 및 초기화
     private final List<Menu> menus;
     private final Order order;
+    private static final String INCORRECT_NUMBER = "올바르지 않은 번호입니다.";
+    private static final String EXIT = "프로그램을 종료합니다.";
 
     public Kiosk(List<Menu> menus, Order order) {
         this.menus = menus;
@@ -23,7 +25,7 @@ public class Kiosk {
         orderMenu();
 
         // 프로그램을 종료
-        System.out.println("프로그램을 종료합니다.");
+        System.out.println(EXIT);
     }
 
     private void orderMenu() {
@@ -52,7 +54,7 @@ public class Kiosk {
         } else if (!order.cartIsEmpty() && categoryNum == menus.size() + 2) {
             order.clearOrders();
         } else if (categoryNum != 0) {
-            System.out.println("올바르지 않은 번호입니다.");
+            System.out.println(INCORRECT_NUMBER);
         }
     }
 
@@ -74,7 +76,7 @@ public class Kiosk {
         if (menuNum > 0 && menuNum <= menu.getMenuItemSize()) {
             return addCart(menu, menuNum);
         } else if (menuNum != 0) {
-            System.out.println("올바르지 않은 번호입니다.");
+            System.out.println(INCORRECT_NUMBER);
         }
         return false;
     }
@@ -87,7 +89,7 @@ public class Kiosk {
             OutputHandler.printStartOrder();
             num = InputHandler.getIntInput();
             if (navigateOrder(num)) break;
-        } while (num != 2);
+        } while (num != 3);
     }
 
     private boolean navigateOrder(int num) {
@@ -95,8 +97,12 @@ public class Kiosk {
             double discountRate = getDiscountRate();
             order.orderSuccess(discountRate);
             return true;
-        } else if (num != 2) {
-            System.out.println("올바르지 않은 번호입니다.");
+        } else if (num == 2) {
+            OutputHandler.printRemoveMenuName();
+            String menuName = InputHandler.getMenuNameInput();
+            order.removeMenuItem(menuName);
+        } else if (num != 3) {
+            System.out.println(INCORRECT_NUMBER);
         }
         return false;
     }
@@ -119,7 +125,7 @@ public class Kiosk {
             order.addItem(menuItem);
             return true;
         } else if (num != 2) {
-            System.out.println("올바르지 않은 번호입니다.");
+            System.out.println(INCORRECT_NUMBER);
         }
         return false;
     }
@@ -135,7 +141,7 @@ public class Kiosk {
                 }
             }
             if (num > UserType.values().length || num <= 0) {
-                System.out.println("올바르지 않은 번호입니다.");
+                System.out.println(INCORRECT_NUMBER);
             }
         } while (num != 0);
         return 0;

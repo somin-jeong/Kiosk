@@ -27,4 +27,8 @@ public class MenuItem {
     public double getPrice() {
         return price;
     }
+
+    public String getMenuName() {
+        return menuName;
+    }
 }
