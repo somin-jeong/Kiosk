@@ -41,9 +41,8 @@ public class Order {
 
     private void printOrders() {
         System.out.println("[ Orders ]");
-        for (MenuItem menuItem : cartItems) {
-            System.out.println(menuItem.toString());
-        }
+        cartItems.stream().map(MenuItem::toString)
+                .forEach(System.out::println);
     }
 
     private void printTotalPrice() {
@@ -52,10 +51,6 @@ public class Order {
     }
 
     private double getTotalPrice() {
-        double totalPrice = 0;
-        for (MenuItem menuItem : cartItems) {
-            totalPrice += menuItem.getPrice();
-        }
-        return totalPrice;
+        return cartItems.stream().mapToDouble(MenuItem::getPrice).sum();
     }
 }

@@ -7,6 +7,7 @@ import org.example.domain.UserType;
 import org.example.io.InputHandler;
 import org.example.io.OutputHandler;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Kiosk {
@@ -135,12 +136,9 @@ public class Kiosk {
         do {
             OutputHandler.printDiscountInfo();
             num = InputHandler.getIntInput();
-            for (UserType userType : UserType.values()) {
-                if (userType.ordinal()+1 == num) {
-                    return userType.getDiscountRate();
-                }
-            }
-            if (num > UserType.values().length || num <= 0) {
+            if (num <= UserType.values().length && num > 0) {
+                return UserType.values()[num-1].getDiscountRate();
+            } else {
                 System.out.println(INCORRECT_NUMBER);
             }
         } while (num != 0);
